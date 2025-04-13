@@ -74,37 +74,6 @@ const Create = () => {
     return true;
   };
 
-  // const getImageBuffer = async (prompt, category) => {
-  //   const finalPrompt = `imagine a ${category} : ${prompt}`;
-  //   console.log(finalPrompt);
-  //   const form = new FormData();
-  //   form.append("prompt", finalPrompt);
-  //   const response = await fetch("https://clipdrop-api.co/text-to-image/v1", {
-  //     method: "POST",
-  //     headers: {
-  //       "x-api-key": import.meta.env.VITE_CD_KEY,
-  //     },
-  //     body: form,
-  //   });
-  //   const buffer = await response.arrayBuffer();
-  //   return buffer;
-  // };
-
-  // const generateImageUrl = async (buffer, prompt) => {
-  //   const formData = new FormData();
-  //   formData.append(
-  //     "image",
-  //     new Blob([buffer], { type: "image/jpeg" }),
-  //     `${prompt}.jpg`
-  //   );
-  //   const response = await fetch(imgBBApi, {
-  //     method: "POST",
-  //     body: formData,
-  //   });
-  //   const data = await response.json();
-  //   return data;
-  // };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     const myForm = e.target;
@@ -115,7 +84,7 @@ const Create = () => {
     console.log({ prompt, category });
 
     axios
-      .post("http://localhost:5000/create-image", {
+      .post("http://localhost:5000/api/v1/image/create", {
         email: user?.email,
         prompt,
         category,
