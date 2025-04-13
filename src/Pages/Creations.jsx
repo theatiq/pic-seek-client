@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import PageTitle from "../components/shared/PageTitle";
+import { Link } from "react-router";
 
 const Creations = () => {
   const [images, setImages] = useState([]);
@@ -14,27 +15,12 @@ const Creations = () => {
       <h2>Total Images: {images.length}</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {images.map((img) => (
-          <div key={img._id} className="card bg-base-100 w-96 shadow-sm">
+          <div key={img._id} className="card bg-base-100 w-96 shadow-sm relative">
             <figure>
-              <img
-                src={img.thumbImg}
-                alt="Shoes"
-                className="w-full"
-              />
+              <img src={img.thumbImg} alt="Shoes" className="w-full" />
             </figure>
-            <div className="card-body">
-              <h2 className="card-title">
-                Card Title
-                <div className="badge badge-secondary">NEW</div>
-              </h2>
-              <p>
-                A card component has a figure, a body part, and inside body
-                there are title and actions parts
-              </p>
-              <div className="card-actions justify-end">
-                <div className="badge badge-outline">Fashion</div>
-                <div className="badge badge-outline">Products</div>
-              </div>
+            <div className="card-body absolute bottom-1.5 right-2">
+              <Link to={`/creations/${img._id}`} className="btn btn-primary">Details</Link>
             </div>
           </div>
         ))}
